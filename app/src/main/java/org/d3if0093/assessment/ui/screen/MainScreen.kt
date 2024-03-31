@@ -1,5 +1,6 @@
-package org.d3if0093.assessment
+package org.d3if0093.assessment.ui.screen
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,7 +13,10 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.d3if0093.assessment.R
+import org.d3if0093.assessment.ui.theme.AssessmentTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -42,5 +46,13 @@ fun ScreenContent(modifier: Modifier) {
             .padding(16.dp)
     ){
 
+    }
+}
+@Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+fun ScreenPreview() {
+    AssessmentTheme {
+        MainScreen()
     }
 }
