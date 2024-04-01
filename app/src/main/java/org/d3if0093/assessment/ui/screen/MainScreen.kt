@@ -67,14 +67,14 @@ fun MainScreen() {
 
 @Composable
 fun ScreenContent(modifier: Modifier) {
-    var berat by remember {mutableStateOf("")}
-    var beratError by remember {mutableStateOf(false)}
-    var tinggi by remember {mutableStateOf("")}
-    var tinggiError by remember {mutableStateOf(false)}
+    var nama by remember {mutableStateOf("")}
+    var namaError by remember {mutableStateOf(false)}
+    var jumlah by remember {mutableStateOf("")}
+    var jumlahError by remember {mutableStateOf(false)}
 
     val radioOptioons = listOf(
-        stringResource(id = R.string.pria),
-        stringResource(id = R.string.wanita)
+        stringResource(id = R.string.standard),
+        stringResource(id = R.string.express)
     )
     var gender by remember { mutableStateOf(radioOptioons[0]) }
     var bmi by remember {mutableFloatStateOf(0f)}
@@ -89,31 +89,29 @@ fun ScreenContent(modifier: Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = stringResource(id = R.string.bmi_intro),
+            text = stringResource(id = R.string.intro),
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = berat,
-            onValueChange = { berat = it },
-            label = { Text(text = stringResource(R.string.berat_badan))},
-            isError = beratError,
-            trailingIcon = { IconPicker(beratError, "kg") },
-            supportingText = { ErrorHint(beratError)},
+            value = nama,
+            onValueChange = { nama = it },
+            label = { Text(text = stringResource(R.string.nama))},
+            isError = namaError,
+            supportingText = { ErrorHint(namaError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
+                keyboardType = KeyboardType.Text,
                 imeAction = ImeAction.Next
             ),
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = tinggi,
-            onValueChange = {tinggi = it},
-            label = { Text(text = stringResource(R.string.tinggi_badan))},
-            isError = tinggiError,
-            trailingIcon = { IconPicker(tinggiError,"cm") },
-            supportingText = { ErrorHint(tinggiError)},
+            value = jumlah,
+            onValueChange = {jumlah = it},
+            label = { Text(text = stringResource(R.string.jumlah))},
+            isError = jumlahError,
+            supportingText = { ErrorHint(jumlahError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -143,11 +141,11 @@ fun ScreenContent(modifier: Modifier) {
         }
         Button(
             onClick = {
-                beratError = (berat == "" || berat == "0")
-                tinggiError = (tinggi == "" || tinggi == "0")
-                if (beratError || tinggiError) return@Button
+                namaError = (nama == "" || nama == "0")
+                jumlahError = (jumlah == "" || jumlah == "0")
+                if (namaError || jumlahError) return@Button
 
-                bmi = hitungBmi(berat.toFloat(), tinggi.toFloat())
+                bmi = hitungBmi(nama.toFloat(), jumlah.toFloat())
                 kategori = getKategori(bmi, gender == radioOptioons[0])
             },
             modifier = Modifier.padding(top = 8.dp),
