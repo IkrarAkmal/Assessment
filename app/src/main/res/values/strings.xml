@@ -4,13 +4,10 @@
     <string name="bmi_intro">BMI, atau Body Mass Index  merupakan cara untuk menentukan apakah
         berat badanmu ideal atau tidak.Cobalah sekarang!</string>
     <string name="nama">Nama</string>
-    <string name="jumlah">Jumlah</string>
+    <string name="jumlah">Jumlah sepatu</string>
     <string name="standard">Standard</string>
     <string name="express">Express</string>
     <string name="hitung">Hitung</string>
     <string name="bmi_x">BMI_%1$.2f</string>
-    <string name="kurus">Kurus</string>
-    <string name="ideal">Ideal</string>
-    <string name="gemuk">Gemuk</string>
     <string name="input_invalid">Tidak boleh kosong</string>
 </resources>

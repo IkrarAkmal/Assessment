@@ -141,12 +141,12 @@ fun ScreenContent(modifier: Modifier) {
         }
         Button(
             onClick = {
-                namaError = (nama == "" || nama == "0")
+                namaError = (nama == "")
                 jumlahError = (jumlah == "" || jumlah == "0")
                 if (namaError || jumlahError) return@Button
 
                 bmi = hitungBmi(nama.toFloat(), jumlah.toFloat())
-                kategori = getKategori(bmi, pilih == radioOptioons[0])
+//                kategori = getKategori(bmi, pilih == radioOptioons[0])
             },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
@@ -194,21 +194,21 @@ private fun hitungBmi(berat: Float, tinggi: Float): Float {
 }
 
 
-private fun getKategori(bmi: Float, isMale: Boolean): Int {
-    return if (isMale) {
-        when {
-            bmi < 20.5 -> R.string.kurus
-            bmi >= 27.0 -> R.string.gemuk
-            else -> R.string.ideal
-        }
-    } else {
-        when{
-            bmi < 18.5 -> R.string.kurus
-            bmi >= 25.0 -> R.string.gemuk
-            else -> R.string.ideal
-        }
-    }
-}
+//private fun getKategori(bmi: Float, isMale: Boolean): Int {
+//    return if (isMale) {
+//        when {
+//            bmi < 20.5 -> R.string.kurus
+//            bmi >= 27.0 -> R.string.gemuk
+//            else -> R.string.ideal
+//        }
+//    } else {
+//        when{
+//            bmi < 18.5 -> R.string.kurus
+//            bmi >= 25.0 -> R.string.gemuk
+//            else -> R.string.ideal
+//        }
+//    }
+//}
 
 @Composable
 fun IconPicker(isError: Boolean, unit: String) {
