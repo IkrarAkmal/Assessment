@@ -1,3 +1,5 @@
+package org.d3if0093.assessment.ui.screen
+
 import android.content.res.Configuration
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -12,12 +14,9 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
@@ -28,7 +27,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -43,7 +41,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.d3if0093.assessment.R
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
-import kotlin.math.pow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,9 +73,8 @@ fun ScreenContent(modifier: Modifier) {
         stringResource(id = R.string.standard),
         stringResource(id = R.string.express)
     )
-    var pilih by remember { mutableStateOf(radioOptioons[0]) }
-    var bmi by remember {mutableFloatStateOf(0f)}
-    var kategori by remember { mutableIntStateOf(0) }
+    var service by remember { mutableStateOf(radioOptioons[0]) }
+    var harga by remember {mutableFloatStateOf(0f)}
 
     Column(
         modifier = modifier
@@ -98,7 +94,7 @@ fun ScreenContent(modifier: Modifier) {
             onValueChange = { nama = it },
             label = { Text(text = stringResource(R.string.nama))},
             isError = namaError,
-            supportingText = { ErrorHint(namaError)},
+            supportingText = { ErrorHint(namaError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Text,
@@ -111,7 +107,7 @@ fun ScreenContent(modifier: Modifier) {
             onValueChange = {jumlah = it},
             label = { Text(text = stringResource(R.string.jumlah))},
             isError = jumlahError,
-            supportingText = { ErrorHint(jumlahError)},
+            supportingText = { ErrorHint(jumlahError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -126,12 +122,12 @@ fun ScreenContent(modifier: Modifier) {
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
         ){
             radioOptioons.forEach { text ->
-                GenderOption(label = text,
-                    isSelected = pilih == text,
+                ServiceOption(label = text,
+                    isSelected = service == text,
                     modifier = Modifier
                         .selectable(
-                            selected = pilih == text,
-                            onClick = { pilih = text },
+                            selected = service == text,
+                            onClick = { service = text },
                             role = Role.RadioButton
                         )
                         .weight(1f)
@@ -145,8 +141,7 @@ fun ScreenContent(modifier: Modifier) {
                 jumlahError = (jumlah == "" || jumlah == "0")
                 if (namaError || jumlahError) return@Button
 
-                bmi = hitungBmi(nama.toFloat(), jumlah.toFloat())
-//                kategori = getKategori(bmi, pilih == radioOptioons[0])
+                harga = hitungHarga(jumlah.toInt(), service)
             },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
@@ -154,17 +149,13 @@ fun ScreenContent(modifier: Modifier) {
             Text(text = stringResource(R.string.hitung))
         }
 
-        if (bmi != 0f) {
+        if (harga != 0f) {
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 thickness = 1.dp
             )
             Text(
-                text = stringResource(R.string.bmi_x, bmi),
-                style = MaterialTheme.typography.titleLarge
-            )
-            Text(
-                text = stringResource(kategori).uppercase(),
+                text = stringResource(R.string.harga_output, nama, service, harga),
                 style = MaterialTheme.typography.headlineLarge
             )
         }
@@ -172,7 +163,7 @@ fun ScreenContent(modifier: Modifier) {
 }
 
 @Composable
-fun GenderOption(label: String, isSelected:Boolean, modifier: Modifier) {
+fun ServiceOption(label: String, isSelected:Boolean, modifier: Modifier) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -189,36 +180,11 @@ fun GenderOption(label: String, isSelected:Boolean, modifier: Modifier) {
     }
 }
 
-private fun hitungBmi(berat: Float, tinggi: Float): Float {
-    return berat / (tinggi / 100).pow(2)
-}
-
-
-//private fun getKategori(bmi: Float, isMale: Boolean): Int {
-//    return if (isMale) {
-//        when {
-//            bmi < 20.5 -> R.string.kurus
-//            bmi >= 27.0 -> R.string.gemuk
-//            else -> R.string.ideal
-//        }
-//    } else {
-//        when{
-//            bmi < 18.5 -> R.string.kurus
-//            bmi >= 25.0 -> R.string.gemuk
-//            else -> R.string.ideal
-//        }
-//    }
-//}
-
-@Composable
-fun IconPicker(isError: Boolean, unit: String) {
-    if (isError) {
-        Icon(
-            imageVector = Icons.Filled.Warning,
-            contentDescription = null
-        )
-    } else {
-        Text(text = unit)
+private fun hitungHarga(jumlah: Int, service: String): Float{
+    return when (service) {
+        "Standard" -> jumlah*50000f
+        "Express" -> jumlah*70000f
+        else -> 0f
     }
 }
 

@@ -1,6 +1,6 @@
 package org.d3if0093.assessment
 
-import MainScreen
+import org.d3if0093.assessment.ui.screen.MainScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent

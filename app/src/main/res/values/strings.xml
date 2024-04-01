@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">GoShoe</string>
-    <string name="intro">WELCOME TO GoShoe\nSilahkan mengisi data berikut:</string>
+    <string name="intro">WELCOME TO GoShoe\nStandard: 50k/pcs\nExpress: 70k/pcs\nSilahkan mengisi data berikut:</string>
     <string name="bmi_intro">BMI, atau Body Mass Index  merupakan cara untuk menentukan apakah
         berat badanmu ideal atau tidak.Cobalah sekarang!</string>
     <string name="nama">Nama</string>
@@ -8,6 +8,6 @@
     <string name="standard">Standard</string>
     <string name="express">Express</string>
     <string name="hitung">Hitung</string>
-    <string name="bmi_x">BMI_%1$.2f</string>
+    <string name="harga_output">Nama: %1$s,\nLayanan: %2$s,\nHarga: Rp.%3$.2f</string>
     <string name="input_invalid">Tidak boleh kosong</string>
 </resources>
