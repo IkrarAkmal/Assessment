@@ -76,7 +76,7 @@ fun ScreenContent(modifier: Modifier) {
         stringResource(id = R.string.standard),
         stringResource(id = R.string.express)
     )
-    var gender by remember { mutableStateOf(radioOptioons[0]) }
+    var pilih by remember { mutableStateOf(radioOptioons[0]) }
     var bmi by remember {mutableFloatStateOf(0f)}
     var kategori by remember { mutableIntStateOf(0) }
 
@@ -127,11 +127,11 @@ fun ScreenContent(modifier: Modifier) {
         ){
             radioOptioons.forEach { text ->
                 GenderOption(label = text,
-                    isSelected = gender == text,
+                    isSelected = pilih == text,
                     modifier = Modifier
                         .selectable(
-                            selected = gender == text,
-                            onClick = { gender = text },
+                            selected = pilih == text,
+                            onClick = { pilih = text },
                             role = Role.RadioButton
                         )
                         .weight(1f)
@@ -146,7 +146,7 @@ fun ScreenContent(modifier: Modifier) {
                 if (namaError || jumlahError) return@Button
 
                 bmi = hitungBmi(nama.toFloat(), jumlah.toFloat())
-                kategori = getKategori(bmi, gender == radioOptioons[0])
+                kategori = getKategori(bmi, pilih == radioOptioons[0])
             },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
