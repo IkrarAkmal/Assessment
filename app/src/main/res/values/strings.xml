@@ -8,6 +8,7 @@
     <string name="standard">Standard</string>
     <string name="express">Express</string>
     <string name="hitung">Hitung</string>
+    <string name="kembali">Kembali</string>
     <string name="harga_output">Nama: %1$s,\nLayanan: %2$s,\nHarga: Rp.%3$.2f</string>
     <string name="input_invalid">Tidak boleh kosong</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
