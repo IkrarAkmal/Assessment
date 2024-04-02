@@ -1,5 +1,7 @@
 package org.d3if0093.assessment.ui.screen
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -32,12 +34,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -96,6 +98,7 @@ fun ScreenContent(modifier: Modifier) {
     )
     var service by rememberSaveable { mutableStateOf(radioOptioons[0]) }
     var harga by rememberSaveable {mutableFloatStateOf(0f)}
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -179,6 +182,18 @@ fun ScreenContent(modifier: Modifier) {
                 text = stringResource(R.string.harga_output, nama, service, harga),
                 style = MaterialTheme.typography.headlineLarge
             )
+            Button(
+                onClick = {
+                     shareData(
+                         context = context,
+                         message = context.getString(R.string.harga_output, nama, service, harga)
+                     )
+                },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(R.string.bagikan))
+            }
         }
     }
 }
@@ -213,6 +228,16 @@ private fun hitungHarga(jumlah: Int, service: String): Float{
 fun ErrorHint(isError: Boolean) {
     if (isError) {
         Text(text = stringResource(R.string.input_invalid))
+    }
+}
+
+private fun shareData(context: Context, message: String){
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    if (shareIntent.resolveActivity(context.packageManager) != null){
+        context.startActivity(shareIntent)
     }
 }
 
