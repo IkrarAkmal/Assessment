@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoShoe</string>
+    <string name="nama">Name</string>
+    <string name="jumlah">Number of Shoes</string>
+    <string name="standard">Standard</string>
+    <string name="express">Express</string>
+    <string name="hitung">Count</string>
+    <string name="kembali">Back</string>
+    <string name="bagikan">Share</string>
+    <string name="harga_output">Name: %1$s,\nService: %2$s,\nPrice: Rp.%3$.2f</string>
+    <string name="input_invalid">Can\'t be empty</string>
+    <string name="tentang_aplikasi">About Apps</string>
+    <string name="copyright">GoShoe is an Android application for ordering shoe washing services just by Fill in the name, number of shoes and service options.\nAplikasi ini dibuat untuk Assessmen kelas Mobpro 1.\n\nCopyrght © 2024 Ikrar Akmal Ismudibyo All rights reserved.</string>
+    <string name="intro">WELCOME TO GoShoe\nStandard: 50k/pcs\nExpress: 70k/pc\nPlease fill in the following data:</string>
+    <string name="gambar">Profile Picture</string>
+</resources>
