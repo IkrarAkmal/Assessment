@@ -80,164 +80,16 @@ fun MainScreen(navController: NavHostController) {
                 }
             )
         }
-    ) {pading ->
-        ScreenContent(Modifier.padding(pading))
+    ) {padding ->
+        Content(Modifier.padding(padding))
     }
 }
 
 @Composable
-fun ScreenContent(modifier: Modifier) {
-    var nama by rememberSaveable {mutableStateOf("")}
-    var namaError by rememberSaveable {mutableStateOf(false)}
-    var jumlah by rememberSaveable {mutableStateOf("")}
-    var jumlahError by rememberSaveable {mutableStateOf(false)}
-
-    val radioOptioons = listOf(
-        stringResource(id = R.string.standard),
-        stringResource(id = R.string.express)
-    )
-    var service by rememberSaveable { mutableStateOf(radioOptioons[0]) }
-    var harga by rememberSaveable {mutableFloatStateOf(0f)}
-    val context = LocalContext.current
-
+fun Content(modifier: Modifier) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = modifier.fillMaxSize().padding(16.dp)
     ) {
-        Text(
-            text = stringResource(id = R.string.intro),
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = nama,
-            onValueChange = { nama = it },
-            label = { Text(text = stringResource(R.string.nama))},
-            isError = namaError,
-            supportingText = { ErrorHint(namaError) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = jumlah,
-            onValueChange = {jumlah = it},
-            label = { Text(text = stringResource(R.string.jumlah))},
-            isError = jumlahError,
-            supportingText = { ErrorHint(jumlahError) },
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Row (
-            modifier = Modifier
-                .padding(top = 6.dp)
-                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-        ){
-            radioOptioons.forEach { text ->
-                ServiceOption(label = text,
-                    isSelected = service == text,
-                    modifier = Modifier
-                        .selectable(
-                            selected = service == text,
-                            onClick = { service = text },
-                            role = Role.RadioButton
-                        )
-                        .weight(1f)
-                        .padding(16.dp)
-                )
-            }
-        }
-        Button(
-            onClick = {
-                namaError = (nama == "")
-                jumlahError = (jumlah == "" || jumlah == "0")
-                if (namaError || jumlahError) return@Button
-
-                harga = hitungHarga(jumlah.toInt(), service)
-            },
-            modifier = Modifier.padding(top = 8.dp),
-            contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
-        ) {
-            Text(text = stringResource(R.string.hitung))
-        }
-
-        if (harga != 0f) {
-            Divider(
-                modifier = Modifier.padding(vertical = 8.dp),
-                thickness = 1.dp
-            )
-            Text(
-                text = stringResource(R.string.harga_output, nama, service, harga),
-                style = MaterialTheme.typography.headlineLarge
-            )
-            Button(
-                onClick = {
-                     shareData(
-                         context = context,
-                         message = context.getString(R.string.harga_output, nama, service, harga)
-                     )
-                },
-                modifier = Modifier.padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
-            ) {
-                Text(text = stringResource(R.string.bagikan))
-            }
-        }
-    }
-}
-
-@Composable
-fun ServiceOption(label: String, isSelected:Boolean, modifier: Modifier) {
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RadioButton(
-            selected = isSelected,
-            onClick = null
-        )
-        Text(
-            text = label,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(start = 8.dp)
-        )
-    }
-}
-
-private fun hitungHarga(jumlah: Int, service: String): Float{
-    return when (service) {
-        "Standard" -> jumlah*50000f
-        "Express" -> jumlah*70000f
-        else -> 0f
-    }
-}
-
-@Composable
-fun ErrorHint(isError: Boolean) {
-    if (isError) {
-        Text(text = stringResource(R.string.input_invalid))
-    }
-}
-
-private fun shareData(context: Context, message: String){
-    val shareIntent = Intent(Intent.ACTION_SEND).apply {
-        type = "text/plain"
-        putExtra(Intent.EXTRA_TEXT, message)
-    }
-    if (shareIntent.resolveActivity(context.packageManager) != null){
-        context.startActivity(shareIntent)
     }
 }
 
