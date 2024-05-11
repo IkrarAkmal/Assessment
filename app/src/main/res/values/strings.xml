@@ -3,12 +3,11 @@
     <string name="nama">Nama</string>
     <string name="jenis">Jenis Sepatu</string>
     <string name="kembali">Kembali</string>
-    <string name="bagikan">Bagikan</string>
+    <string name="tambah">Tambah</string>
     <string name="input_invalid">Tidak boleh kosong</string>
     <string name="list_kosong">Belum ada data</string>
     <string name="dilkilk">data diklik</string>
     <string name="tambah_pesanan">Tambah pesanan</string>
-    <string name="tambah_eror">Belum bisa tambah pesanan</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
 </resources>
 
