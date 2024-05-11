@@ -10,6 +10,7 @@
     <string name="gambar">Gambar Profil</string>
     <string name="harga_output">Nama: %1$s,\nLayanan: %2$s,\nHarga: Rp.%3$.2f</string>
     <string name="input_invalid">Tidak boleh kosong</string>
+    <string name="list_kosong">Belum ada data</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="copyright">GoShoe merupakan sebuah aplikasi Android untuk memesan layanan cuci sepatu hanya dengan mengisi Nama, Jumlah sepatu, dan pilihan servis nya./nAplikasi ini dibuat untuk Assessmen kelas Mobpro 1.\n\nCopyrght © 2024 Ikrar Akmal Ismudibyo All rights reserved.</string>
     <string name="intro">WELCOME TO GoShoe\nStandard: 50k/pcs\nExpress: 70k/pcs\nSilahkan mengisi data berikut:</string>
