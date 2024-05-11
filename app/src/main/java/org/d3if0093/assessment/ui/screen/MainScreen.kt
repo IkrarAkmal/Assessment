@@ -26,6 +26,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -38,9 +40,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0093.assessment.R
+import org.d3if0093.assessment.database.HistoriDb
 import org.d3if0093.assessment.model.Histori
 import org.d3if0093.assessment.navigation.Screen
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
+import org.d3if0093.assessment.util.ViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,8 +82,11 @@ fun MainScreen(navController: NavHostController) {
 
 @Composable
 fun ScreenContent(modifier: Modifier, navController: NavHostController) {
-    val viewModel: MainViewModel = viewModel()
-    val data = viewModel.data
+    val context = LocalContext.current
+    val db = HistoriDb.getInstance(context)
+    val factory = ViewModelFactory(db.dao)
+    val viewModel: MainViewModel = viewModel(factory = factory)
+    val data by viewModel.data.collectAsState()
 
     if (data.isEmpty()){
         Column(
