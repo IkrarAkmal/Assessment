@@ -17,4 +17,7 @@ interface HistoriDao {
 
     @Query("SELECT * FROM histori ORDER BY nama DESC")
     fun getHistori(): Flow<List<Histori>>
+
+    @Query("SELECT * FROM histori WHERE id = :id ")
+    suspend fun getHistoriById(id:Long):Histori
 }

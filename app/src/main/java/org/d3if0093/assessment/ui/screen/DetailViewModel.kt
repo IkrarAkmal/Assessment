@@ -19,12 +19,19 @@ class DetailViewModel(private val dao: HistoriDao): ViewModel() {
             dao.insert(histori)
         }
     }
-    fun getPesanan(id: Long): Histori {
-        return Histori(
-            id,
-            "Akmal",
-            "Converse Low",
-            "Selesai"
+    suspend fun getHistori(id: Long): Histori? {
+        return dao.getHistoriById((id))
+    }
+    fun update (id: Long, nama: String, jenis: String, status: String) {
+        val histori = Histori(
+            id = id,
+            nama = nama,
+            jenis = jenis,
+            status = status
         )
+
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.update(histori)
+        }
     }
 }
