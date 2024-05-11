@@ -20,4 +20,7 @@ interface HistoriDao {
 
     @Query("SELECT * FROM histori WHERE id = :id ")
     suspend fun getHistoriById(id:Long):Histori
+
+    @Query("DELETE FROM histori WHERE id = :id ")
+    suspend fun deleteById(id: Long)
 }

@@ -9,6 +9,7 @@
     <string name="dilkilk">data diklik</string>
     <string name="tambah_pesanan">Tambah pesanan</string>
     <string name="edit_pesanan">Ubah pesanan</string>
-    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus catatan</string>
 </resources>
 

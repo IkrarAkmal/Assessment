@@ -34,4 +34,9 @@ class DetailViewModel(private val dao: HistoriDao): ViewModel() {
             dao.update(histori)
         }
     }
+    fun delete(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.deleteById(id)
+        }
+    }
 }
