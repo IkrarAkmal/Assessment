@@ -64,20 +64,7 @@ fun MainScreen(navController: NavHostController) {
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary
-                ),
-                actions = {
-                    IconButton(
-                        onClick = {
-                            navController.navigate(Screen.About.route)
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Outlined.Info,
-                            contentDescription = stringResource(R.string.tentang_aplikasi),
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
+                )
             )
         }
     ) {padding ->
