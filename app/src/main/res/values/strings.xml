@@ -8,6 +8,7 @@
     <string name="list_kosong">Belum ada data</string>
     <string name="dilkilk">data diklik</string>
     <string name="tambah_pesanan">Tambah pesanan</string>
+    <string name="edit_pesanan">Ubah pesanan</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
 </resources>
 

@@ -43,9 +43,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
 
+const val KEY_ID_PESANAN = "idpesanan"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var nama by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
     var status by remember { mutableStateOf("") }
@@ -62,7 +64,10 @@ fun DetailScreen(navController: NavHostController) {
                     }
                 },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_pesanan))
+                    if (id == null)
+                        Text(text = stringResource(id = R.string.tambah_pesanan))
+                    else
+                        Text(text = stringResource(id = R.string.edit_pesanan))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
