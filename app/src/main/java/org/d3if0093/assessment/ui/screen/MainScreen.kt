@@ -50,17 +50,22 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.d3if0093.assessment.R
 import org.d3if0093.assessment.database.HistoriDb
 import org.d3if0093.assessment.model.Histori
 import org.d3if0093.assessment.navigation.Screen
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
+import org.d3if0093.assessment.util.SettingsDataStore
 import org.d3if0093.assessment.util.ViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    var showList by remember { mutableStateOf(true) }
+    val dataStore = SettingsDataStore(LocalContext.current)
+    val showList by dataStore.layoutFlow.collectAsState(true)
     Scaffold(
         topBar = {
             TopAppBar(
@@ -72,7 +77,11 @@ fun MainScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.primary
                 ),
                 actions = {
-                    IconButton(onClick = {showList = !showList}) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveLayout(!showList)
+                        }
+                    }) {
                         Icon(
                             painter = painterResource(
                                 if (showList) R.drawable.baseline_grid_view_24
