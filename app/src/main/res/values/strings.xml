@@ -10,6 +10,9 @@
     <string name="tambah_pesanan">Tambah pesanan</string>
     <string name="edit_pesanan">Ubah pesanan</string>
     <string name="lainnya">Opsi lainnya</string>
-    <string name="hapus">Hapus catatan</string>
+    <string name="hapus">Hapus pesanan</string>
+    <string name="pesan_hapus">Hapus pesanan ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
 

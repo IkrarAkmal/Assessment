@@ -15,7 +15,7 @@ interface HistoriDao {
     @Update
     suspend fun update(histori: Histori)
 
-    @Query("SELECT * FROM histori ORDER BY nama DESC")
+    @Query("SELECT * FROM histori ORDER BY nama ASC")
     fun getHistori(): Flow<List<Histori>>
 
     @Query("SELECT * FROM histori WHERE id = :id ")
