@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">GoShoe</string>
     <string name="nama">Nama</string>
-    <string name="jumlah">Jumlah sepatu</string>
-    <string name="hitung">Hitung</string>
+    <string name="jenis">Jenis Sepatu</string>
     <string name="kembali">Kembali</string>
     <string name="bagikan">Bagikan</string>
     <string name="input_invalid">Tidak boleh kosong</string>
