@@ -1,6 +1,8 @@
 package org.d3if0093.assessment.ui.screen
 
 import android.content.res.Configuration
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +20,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,6 +57,7 @@ fun MainScreen(navController: NavHostController) {
 fun ScreenContent(modifier: Modifier) {
     val viewModel: MainViewModel = viewModel()
     val data = viewModel.data
+    val context = LocalContext.current
 
     if (data.isEmpty()){
         Column(
@@ -71,7 +75,10 @@ fun ScreenContent(modifier: Modifier) {
             modifier = modifier.fillMaxSize()
         ) {
             items(data) {
-                ListHistori(histori = it)
+                ListHistori(histori = it){
+                    val pesan = context.getString(R.string.dilkilk)
+                    Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show()
+                }
                 Divider()
             }
         }
@@ -79,10 +86,11 @@ fun ScreenContent(modifier: Modifier) {
 }
 
 @Composable
-fun ListHistori(histori: Histori) {
+fun ListHistori(histori: Histori, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ){
