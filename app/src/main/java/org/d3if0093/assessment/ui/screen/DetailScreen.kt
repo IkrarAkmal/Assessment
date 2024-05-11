@@ -1,7 +1,6 @@
 package org.d3if0093.assessment.ui.screen
 
 import android.content.res.Configuration
-import android.icu.text.CaseMap.Title
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,19 +37,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import org.d3if0093.assessment.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import androidx.room.Delete
-import org.d3if0093.assessment.database.HistoriDao
+import org.d3if0093.assessment.R
 import org.d3if0093.assessment.database.HistoriDb
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
 import org.d3if0093.assessment.util.ViewModelFactory
