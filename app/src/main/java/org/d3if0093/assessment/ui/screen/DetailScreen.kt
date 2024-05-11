@@ -2,6 +2,7 @@ package org.d3if0093.assessment.ui.screen
 
 import android.content.res.Configuration
 import android.icu.text.CaseMap.Title
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import org.d3if0093.assessment.R
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -43,14 +45,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import org.d3if0093.assessment.database.HistoriDao
+import org.d3if0093.assessment.database.HistoriDb
 import org.d3if0093.assessment.ui.theme.AssessmentTheme
+import org.d3if0093.assessment.util.ViewModelFactory
 
 const val KEY_ID_PESANAN = "idpesanan"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id: Long? = null) {
-    val viewModel: DetailViewModel = viewModel()
+    val context = LocalContext.current
+    val db = HistoriDb.getInstance(context)
+    val factory = ViewModelFactory(db.dao)
+    val viewModel: DetailViewModel = viewModel(factory = factory)
 
     var nama by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
@@ -67,7 +75,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         topBar = {
             TopAppBar(
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = stringResource(R.string.kembali),
@@ -86,7 +94,16 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {
+                        if (nama == "" || jenis == ""){
+                            Toast.makeText(context, R.string.invalid, Toast.LENGTH_SHORT).show()
+                            return@IconButton
+                        }
+                        if (id == null) {
+                            viewModel.insert(nama, jenis, status)
+                        }
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.Filled.Check,
                             contentDescription = stringResource(R.string.tambah),

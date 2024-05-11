@@ -4,7 +4,7 @@
     <string name="jenis">Jenis Sepatu</string>
     <string name="kembali">Kembali</string>
     <string name="tambah">Tambah</string>
-    <string name="input_invalid">Tidak boleh kosong</string>
+    <string name="invalid">Data tidak boleh kosong</string>
     <string name="list_kosong">Belum ada data</string>
     <string name="dilkilk">data diklik</string>
     <string name="tambah_pesanan">Tambah pesanan</string>
