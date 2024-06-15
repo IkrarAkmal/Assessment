@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobpro 1</string>
+    <string name="app_name">Ngengg</string>
     <string name="gambar">Gambar %1$s</string>
     <string name="error">Gagal memuat data.. Koneksi error.</string>
     <string name="try_again">Coba lagi</string>
@@ -8,5 +8,10 @@
     <string name="logout">Logout</string>
     <string name="grid">Tampilan Grid</string>
     <string name="list">Tampilan List</string>
+    <string name="nama">Nama</string>
+    <string name="merk">Merk</string>
+    <string name="batal">Batal</string>
+    <string name="simpan">Simpan</string>
+    <string name="tambah_motor">Tambah motor</string>
 </resources>
 
