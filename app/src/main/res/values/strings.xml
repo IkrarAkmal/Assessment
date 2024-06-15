@@ -1,19 +1,11 @@
 <resources>
-    <string name="app_name">GoShoe</string>
-    <string name="nama">Nama</string>
-    <string name="jenis">Jenis Sepatu</string>
-    <string name="kembali">Kembali</string>
-    <string name="tambah">Tambah</string>
-    <string name="invalid">Data tidak boleh kosong</string>
-    <string name="list_kosong">Belum ada data</string>
-    <string name="dilkilk">data diklik</string>
-    <string name="tambah_pesanan">Tambah pesanan</string>
-    <string name="edit_pesanan">Ubah pesanan</string>
-    <string name="lainnya">Opsi lainnya</string>
-    <string name="hapus">Hapus pesanan</string>
-    <string name="pesan_hapus">Hapus pesanan ini?</string>
-    <string name="tombol_hapus">Hapus</string>
-    <string name="tombol_batal">Batal</string>
+    <string name="app_name">Mobpro 1</string>
+    <string name="gambar">Gambar %1$s</string>
+    <string name="error">Gagal memuat data.. Koneksi error.</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="profil">Profil</string>
+    <string name="tutup">Tutup</string>
+    <string name="logout">Logout</string>
     <string name="grid">Tampilan Grid</string>
     <string name="list">Tampilan List</string>
 </resources>

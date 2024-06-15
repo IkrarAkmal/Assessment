@@ -3,7 +3,6 @@ package org.d3if0093.assessment.util
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.d3if0093.assessment.database.HistoriDao
-import org.d3if0093.assessment.ui.screen.DetailViewModel
 import org.d3if0093.assessment.ui.screen.MainViewModel
 
 class ViewModelFactory(
